@@ -13,7 +13,10 @@
     "express": "^4.4.5",
     "method-override": "^2.0.2"
   },
+  //"scripts": {
+  //  "start": "node server.js"
+  //}
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js --websocket-port=$OPENSHIFT_NODEJS_PORT --log-level=1"
   }
 }
