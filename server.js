@@ -17,6 +17,10 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+// Configuration
+app.get('/configuration', config.getConfig);
+
+// Sessions
 app.get('/sessions', sessions.findAll);
 app.get('/sessions/:id', sessions.findById);
 
