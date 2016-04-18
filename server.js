@@ -2,6 +2,8 @@ var express = require('express'),
     bodyParser      = require('body-parser'),
     methodOverride  = require('method-override'),
     sessions        = require('./routes/sessions'),
+    config          = require('./routes/config'),
+    rates_db        = require('./database/rates_db'),
     app = express();
 
 app.use(bodyParser.json());
@@ -23,6 +25,15 @@ app.get('/configuration', config.getConfig);
 // Sessions
 app.get('/sessions', sessions.findAll);
 app.get('/sessions/:id', sessions.findById);
+
+// Rates
+app.post('/rate', function(request, response) {
+	var talkId = request.body.talkId;
+	var talkRate = request.body.talkRate;
+	console.log("Talk ID = " + talkId + ", Talk Rate = " + talkRate);
+	rates_db.saveRate(talkId, talkRate);
+	response.end("OK");
+});
 
 //app.set('port', process.env.PORT || 5000);
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
