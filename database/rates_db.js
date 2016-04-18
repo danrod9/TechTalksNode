@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-//mongoose.connect('mongodb://wmtechtalks-wmnode.rhcloud.com/my_database');
+//mongoose.connect('mongodb://admin:gTL9rqQMw_cx@127.12.44.2/wmtechtalks');
 mongoose.connect('mongodb://localhost/wmtechtalks');
 
 var db = mongoose.connection;

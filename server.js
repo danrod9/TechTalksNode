@@ -1,11 +1,11 @@
-var express = require('express'),
-    bodyParser      = require('body-parser'),
-    methodOverride  = require('method-override'),
-    sessions        = require('./routes/sessions'),
-    config          = require('./routes/config'),
-    rates_db        = require('./database/rates_db'),
-    app = express();
-
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var sessions = require('./routes/sessions');
+var config = require('./routes/config');
+var rates_db = require('./database/rates_db');
+    
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
