@@ -15,7 +15,7 @@ app.use(methodOverride());      // simulate DELETE and PUT
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
     next();
 });
 
@@ -30,9 +30,15 @@ app.get('/sessions/:id', sessions.findById);
 app.post('/rate', function(request, response) {
 	var talkId = request.body.talkId;
 	var talkRate = request.body.talkRate;
-	console.log("Talk ID = " + talkId + ", Talk Rate = " + talkRate);
-	rates_db.saveRate(talkId, talkRate);
-	response.end("OK");
+	var speakerRate = request.body.speakerRate;
+	var comments = request.body.comments;
+	console.log("Talk ID = " + talkId + ", Talk Rate = " + talkRate + ", Speaker Rate = " + speakerRate);
+	var res = rates_db.saveRate(talkId, talkRate, speakerRate, comments);
+	console.log("Rate save: ", res);
+	if (typeof res === 'undefined' || res.length == 0) {
+		res = "ERROR";
+	}
+	response.end(res);
 });
 
 //app.set('port', process.env.PORT || 5000);

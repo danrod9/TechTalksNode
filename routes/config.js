@@ -1,6 +1,7 @@
 var config = {
-		version:1 , 
-		activation:"taco"
+		version:9, 
+		activation:"taco",
+		slack:"https://walmarttech.slack.com/messages/imagine"
 	};
 
 exports.getConfig = function (req, res, next) {
